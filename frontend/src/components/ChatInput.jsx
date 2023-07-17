@@ -12,9 +12,9 @@ export default function ChatInput( {handleSendMsg} ) {
     setShowEmojiPicker(!showEmojiPicker);
   };
 
-  const handleEmojiClick = (event, emoji) => {
+  const handleEmojiClick = (event, emojiObject) => {
     let message = msg;
-    message += emoji.emoji;
+    message += emojiObject.emoji;
     setMsg(message);
   };
 
@@ -22,7 +22,7 @@ export default function ChatInput( {handleSendMsg} ) {
     event.preventDefault();
     if (msg.length>0) {
       handleSendMsg(msg);
-      setMsg('')
+      setMsg("");
     }
   };
 

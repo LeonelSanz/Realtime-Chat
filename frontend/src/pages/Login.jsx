@@ -48,7 +48,7 @@ function Login() {
   };
 
   const handleValidation = () => {
-    const { password, username } = values;
+    const { username, password } = values;
     if (password === "") {
       toast.error(
         "Email and Password is required",

@@ -13,12 +13,10 @@ export default function ChatContainer({ currentChat, socket }) {
 
     useEffect(() => {
         const fetchData = async () => {
-            const data = await JSON.parse(
-                localStorage.getItem("chat-app-user")
-            );
+            const data = await JSON.parse(localStorage.getItem("chat-app-user"));
             const response = await axios.post(getAllMessagesRoute, {
                 from: data._id,
-                to: currentChat._id,
+                to: currentChat?._id,
             });
             setMessages(response.data);
         };
@@ -28,23 +26,19 @@ export default function ChatContainer({ currentChat, socket }) {
 
     useEffect(() => {
         const getCurrentChat = async () => {
-          if (currentChat) {
-            await JSON.parse(
-              localStorage.getItem("chat-app-user")
-            )._id;
-          }
+            if (currentChat) {
+                await JSON.parse(localStorage.getItem("chat-app-user"))._id;
+            }
         };
         getCurrentChat();
-      }, [currentChat]);
+    }, [currentChat]);
 
     const handleSendMsg = async (msg) => {
-        const data = await JSON.parse(
-            localStorage.getItem("chat-app-user")
-        );
+        const data = await JSON.parse(localStorage.getItem("chat-app-user"));
         socket.current.emit("send-msg", {
             to: currentChat._id,
             from: data._id,
-            msg
+            msg,
         });
         await axios.post(sendMessageRoute, {
             from: data._id,
@@ -53,24 +47,24 @@ export default function ChatContainer({ currentChat, socket }) {
         });
 
         const msgs = [...messages];
-        msgs.push({fromSelf: true, message: msg});
+        msgs.push({ fromSelf: true, message: msg });
         setMessages(msgs);
     };
 
     useEffect(() => {
         if (socket.current) {
-            socket.current.on("msg-recieve", (msg)=> {
-                setArrivalMessage({fromSelf: false, message: msg});
+            socket.current.on("msg-recieve", (msg) => {
+                setArrivalMessage({ fromSelf: false, message: msg });
             });
         }
     }, [socket]);
 
     useEffect(() => {
-        arrivalMessage && setMessages((prev)=>[...prev, arrivalMessage]);
+        arrivalMessage && setMessages((prev) => [...prev, arrivalMessage]);
     }, [arrivalMessage]);
 
     useEffect(() => {
-        scrollRef.current?.scrollIntoView({behaviour: "smooth"});
+        scrollRef.current?.scrollIntoView({ behavior: "smooth" });
     }, [messages]);
 
     return (
@@ -122,7 +116,7 @@ const Container = styled.div`
   overflow: hidden;
   @media screen and (min-width: 720px) and (max-width: 1080px) {
     grid-template-rows: 15% 70% 15%;
-}
+  }
   .chat-header {
     display: flex;
     justify-content: space-between;
@@ -151,36 +145,36 @@ const Container = styled.div`
     gap: 1rem;
     overflow: auto;
     &::-webkit-scrollbar {
-        width: 0.2rem;
-        &-thumb {
-            background-color: #ffffff39;
-            width: 0.1rem;
-            border-radius: 1rem;
-        }
+      width: 0.2rem;
+      &-thumb {
+        background-color: #ffffff39;
+        width: 0.1rem;
+        border-radius: 1rem;
+      }
     }
     .message {
-        display: flex;
-        align-items: center;
-        .content {
-            max-width: 40%;
-            overflow-wrap: break-word;
-            padding: 1rem;
-            font-size: 1.1rem;
-            border-radius: 1rem;
-            color: #d1d1d1;
-        }
+      display: flex;
+      align-items: center;
+      .content {
+        max-width: 40%;
+        overflow-wrap: break-word;
+        padding: 1rem;
+        font-size: 1.1rem;
+        border-radius: 1rem;
+        color: #d1d1d1;
+      }
     }
     .sended {
-        justify-content: flex-end;
-        .content {
-            background-color: #4f04ff21;
-        }
+      justify-content: flex-end;
+      .content {
+        background-color: #4f04ff21;
+      }
     }
     .recieved {
-        justify-content: flex-start;
-        .content {
-            background-color: #9900ff20;
-        }
+      justify-content: flex-start;
+      .content {
+        background-color: #9900ff20;
+      }
     }
   }
 `;
