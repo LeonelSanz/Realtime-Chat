@@ -36,9 +36,9 @@ export default function ChatInput( {handleSendMsg} ) {
           }
         </div>
       </div>
-      <form className="input-container" onSubmit={(e)=> sendChat(e)}>
+      <form className="input-container" onSubmit={(event) => sendChat(event)}>
         <input type="text" placeholder='type your message here' value={msg} onChange={(e)=> setMsg(e.target.value)} />
-        <button className="submit">
+        <button type="submit">
           <IoMdSend />
         </button>
       </form>

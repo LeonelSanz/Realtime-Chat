@@ -55,7 +55,7 @@ function Login() {
         toastOptions
       );
       return false;
-    } else if (username.length === "") {
+    } else if (username === "") {
       toast.error(
         "Email and Password is required",
         toastOptions
@@ -129,7 +129,7 @@ const FormContainer = styled.div`
     gap: 2rem;
     background-color: #00000076;
     border-radius: 2rem;
-    padding: 3rem 5rem;
+    padding: 5rem;
     input {
       background-color: transparent;
       padding: 1rem;

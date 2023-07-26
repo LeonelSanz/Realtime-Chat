@@ -32,7 +32,7 @@ export default function Contacts({ contacts, currentUser, changeChat }) {
                                 <div
                                     className={`contact ${index === currentSelected ? "selected" : ""
                                         }`}
-                                    key={index}
+                                    key={contact._id}
                                     onClick={()=> changeCurrentChat(index, contact)}
                                 >
                                     <div className="avatar">
@@ -85,7 +85,8 @@ const Container = styled.div`
     }
     .contacts {
         display: flex;
-        flex-direction: columns;
+        flex-direction: column;
+        justify-content: center;
         align-items: center;
         overflow: auto;
         gap: 0.8rem;
