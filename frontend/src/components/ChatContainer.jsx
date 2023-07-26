@@ -11,17 +11,15 @@ export default function ChatContainer({ currentChat, socket }) {
     const [arrivalMessage, setArrivalMessage] = useState(null);
     const scrollRef = useRef();
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const data = await JSON.parse(localStorage.getItem("chat-app-user"));
-            const response = await axios.post(getAllMessagesRoute, {
-                from: data._id,
-                to: currentChat?._id,
-            });
-            setMessages(response.data);
-        };
-
-        fetchData();
+    useEffect(async () => {
+      const data = await JSON.parse(
+        localStorage.getItem("chat-app-user")
+      );
+      const response = await axios.post(getAllMessagesRoute, {
+        from: data._id,
+        to: currentChat?._id,
+      });
+      setMessages(response.data);
     }, [currentChat]);
 
     useEffect(() => {

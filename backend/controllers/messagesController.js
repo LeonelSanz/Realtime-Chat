@@ -26,7 +26,7 @@ module.exports.getAllMessage = async (req, res, next) => {
         const projectMessages = messages.map((msg)=> {
             return {
                 fromSelf: msg.sender.toString() === from,
-                message: msg.message.text
+                message: msg.message.text,
             };
         });
         res.json(projectMessages);
