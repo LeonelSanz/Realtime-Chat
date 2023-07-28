@@ -32,7 +32,7 @@ const server = app.listen(process.env.PORT, () => {
 
 const io = socket(server, {
   cors:{
-    origin:"http://localhost:3000",
+    origin:"realtime-chat-olive.vercel.app",
     credentials: true
   }
 });
