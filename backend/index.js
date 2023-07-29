@@ -8,6 +8,11 @@ require("dotenv").config();
 
 const app = express();
 
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'https://realtime-chat-olive.vercel.app');
+  next();
+});
+
 app.use(express.json());
 app.use(cors({ origin: 'https://realtime-chat-olive.vercel.app' }));
 
