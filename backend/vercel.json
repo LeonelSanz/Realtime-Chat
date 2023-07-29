@@ -1,4 +1,5 @@
 {
+    "version": 2,
     "builds": [
         {
             "src": "./index.js",
@@ -6,6 +7,29 @@
         }
     ],
     "rewrites": [
-        { "source": "/api/(.*)", "destination": "/api/[endpoint]" }
+        {
+            "source": "/api/(.*)",
+            "destination": "/api/[endpoint]"
+        }
+    ],
+    "headers": [
+        {
+            "source": "/(.*)",
+            "headers": [
+                {
+                    "key": "Access-Control-Allow-Origin",
+                    "value": "*"
+                }
+            ]
+        },
+        {
+            "source": "/realtime-chat-api-six/(.*)",
+            "headers": [
+                {
+                    "key": "Access-Control-Allow-Origin",
+                    "value": "*"
+                }
+            ]
+        }
     ]
 }
