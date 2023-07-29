@@ -21,6 +21,8 @@ app.use(cors({ origin: 'https://realtime-chat-olive.vercel.app' }));
 app.use("/api/auth", userRoutes);
 app.use("/api/messages", messageRoutes);
 
+console.log('MONGO_URL:', process.env.MONGO_URL);
+
 mongoose
   .connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
@@ -30,7 +32,7 @@ mongoose
     console.log("DB Connection Successfully");
   })
   .catch((err) => {
-    console.log(err.message);
+    console.log('Error connecting to MongoDB:', err);
   });
 
 const server = app.listen(process.env.PORT, () => {
@@ -39,7 +41,7 @@ const server = app.listen(process.env.PORT, () => {
 
 const io = socket(server, {
   cors:{
-    origin:"realtime-chat-olive.vercel.app",
+    origin:"https://realtime-chat-olive.vercel.app",
     credentials: true
   }
 });
