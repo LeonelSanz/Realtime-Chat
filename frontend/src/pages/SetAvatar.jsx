@@ -50,8 +50,7 @@ export default function SetAvatar() {
     };
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
+  useEffect(async () => {
       const data = [];
       for (let i = 0; i < 4; i++) {
         const image = await axios.get(`${api}/${Math.round(Math.random() * 1000)}`);
@@ -60,9 +59,6 @@ export default function SetAvatar() {
       }
       setAvatars(data);
       setIsLoading(false);
-    };
-
-    fetchData();
   }, []);
 
   return (
