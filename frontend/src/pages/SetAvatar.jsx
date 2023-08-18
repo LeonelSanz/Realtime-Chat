@@ -116,10 +116,10 @@ const Container = styled.div`
       color: white;
     }
   }
-
   .avatars {
     display: flex;
     gap: 2rem;
+
     .avatar {
       border: 0.4rem solid transparent;
       padding: 0.4rem;
@@ -130,27 +130,25 @@ const Container = styled.div`
       transition: 0.5s ease-in-out;
       img {
         height: 6rem;
+        transition: 0.5s ease-in-out;
       }
     }
-
     .selected {
-      border: 0.4rem solid $4e0eff;
+      border: 0.4rem solid #4e0eff;
     }
   }
-
   .submit-btn {
-    background-color: #997af0;
-      color: white;
-      padding: 1rem 2rem;
-      border: none;
-      font-weight: bold;
-      cursor: pointer;
-      border-radius: 0.4rem;
-      font-size: 1rem;
-      text-transform: uppercase;
-      transition: 0.5s ease-in-out;
-      &:hover {
-        background-color: #4e0eff;
-      }
+    background-color: #4e0eff;
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 0.4rem;
+    font-size: 1rem;
+    text-transform: uppercase;
+    &:hover {
+      background-color: #4e0eff;
+    }
   }
 `;
